@@ -1,12 +1,18 @@
 # Matrix Multiplication Parallelization
 
-Group members:
+### Group members:
 
 Christopher Park
 
 Sungji Kim
 
 Joe Ciccone
+
+Chi Zhang
+
+### Project Board:
+
+(Trello Board Link)[https://trello.com/b/qkwlwqlG/cis3296-lab6]
 
 ### ACCESSING THE CLUSTER
 
