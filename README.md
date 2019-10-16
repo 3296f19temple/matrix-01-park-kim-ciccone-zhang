@@ -38,3 +38,11 @@ sample log in:
 `cd matrix-01-park-kim-ciccone`
 
 You are now inside the project file, use git commands to interact.
+
+### EXITING THE CLUSTER
+
+to leave the cluster that the repo is hosted on,
+either close the terminal used to access the cluster
+or if you want to return to the command line, use
+`exit` 
+three times to leave all three ssh's.
