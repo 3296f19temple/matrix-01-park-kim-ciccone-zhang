@@ -12,7 +12,7 @@ Chi Zhang
 
 ### Project Board:
 
-(Trello Board Link)[https://trello.com/b/qkwlwqlG/cis3296-lab6]
+[Trello Board Link](https://trello.com/b/qkwlwqlG/cis3296-lab6)
 
 ### ACCESSING THE CLUSTER
 
