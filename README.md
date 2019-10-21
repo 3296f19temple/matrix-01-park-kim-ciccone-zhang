@@ -25,16 +25,23 @@ then ssh into opsrey (WILL require password)
 
 then ssh into chinook (should NOT require password)
 >chinook
+
+
 Syntax for SSH:
 `ssh "username"@cis-linux2.temple.edu`
 
 sample log in:
 
 `ssh tuj80083@cis-linux2.temple.edu`
+
 >enter password
+
 `ssh tuj80083@osprey.cis.temple.edu`
+
 >enter password
+
 `ssh chinook`
+
 `cd matrix-01-park-kim-ciccone`
 
 You are now inside the project file, use git commands to interact.
