@@ -98,12 +98,12 @@ int main(int argc, char* argv[])
       
       bb = malloc(sizeof(double) * bRows * bCols);
       MPI_Bcast(bb, bRows*bCols, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-      if(myid <= aRows) {//if there are more proccesses than rows, extra ones immediately exit
+      if(myid <= aRows) {
         while(1) {
           double input[aCols];
           double output[bCols];
           
-	  //listening for work to do
+	  
           MPI_Recv(&input, aCols, MPI_DOUBLE, 0, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
           if(status.MPI_TAG == 0){ 
             break;
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
 	    }
 	    output[i] = sum;
           }
-	  //send results to master
+	  
           MPI_Send(output, bCols, MPI_DOUBLE, 0, ansType, MPI_COMM_WORLD);
         }
       }
