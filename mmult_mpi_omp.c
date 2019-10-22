@@ -10,7 +10,7 @@ void printMatrices(double *matrix,int m, int n);
 double* gen_matrix(int n, int m, FILE* fp);
 int mmult(double *c, double *a, int aRows, int aCols, double *b, int bRows, int bCols);
 void compare_matrix(double *a, double *b, int nRows, int nCols);
-void writeToFile(double* matrix, int m, int n, char* fileName);
+
 /** 
     Program to multiply a matrix times a matrix using both
     mpi to distribute the computation among nodes and omp
