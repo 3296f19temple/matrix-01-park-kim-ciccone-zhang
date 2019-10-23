@@ -56,6 +56,26 @@ double* gen_matrix(int n, int m,FILE *fp) {
   return matrix;
 }
 
+double* gen_matrix2(int n, int m) { //original gen_matrix method. cant recall if c allows for overloading so changing method name
+
+  int i, j;
+
+  double *a = malloc(sizeof(double) * n * m);
+
+  for (i = 0; i < n; i++) {
+
+    for (j = 0; j < m; j++) {
+
+      a[i*m + j] = (double)rand()/RAND_MAX;
+
+    }
+
+  }
+
+  return a;
+
+}
+
 void compare_matrices(double* a, double* b, int nRows, int nCols) {
 	int n = nRows * nCols;
 	int i, j, k;
