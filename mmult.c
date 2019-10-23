@@ -49,9 +49,9 @@ int naive_mmult(double *c,
 int i, j, k;
 for (i = 0; i < aRows; i++)
   for (j = 0; j < bCols; j++) {
-    c[i][j] = 0;
+    c[i*bCols + j] = 0;
     for (k = 0; k < bRows; k++)
-      c[i][j] += a[i][k] * b[k][j];
+      c[i*bCols + j] += a[i*bRows + k] * b[k*bCols + j];
   }
 }
 
