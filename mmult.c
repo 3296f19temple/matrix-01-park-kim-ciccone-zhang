@@ -2,6 +2,30 @@
 #include<stdlib.h>
 #include<math.h>
 
+void writeOutput(double* matrix, int m, int n, char* fileName){
+ int i,j;
+  FILE* filePtr;
+  filePtr = fopen(fileName, "w");
+
+  for(i = 0; i < m; i++){
+    for(j = 0; j < n; j++){
+      fprintf(filePtr, "%f ", matrix[i*n + j]);
+    }
+    fprintf(filePtr, "\n");
+  }
+
+  fclose(filePtr);
+}
+
+void printMatrices(double *matrix, int m, int n){
+  for(int i=0;i < m; i++){
+    for(int j =0; j < n;j++){
+      printf("%f ",matrix[i*n+j]);
+    }
+    printf("%s","\n");
+  }
+}
+
 int mmult(double *c, 
 	  double *a, int aRows, int aCols, 
 	  double *b, int bRows, int bCols) {
@@ -19,15 +43,37 @@ int mmult(double *c,
   return 0;
 }
 
-double* gen_matrix(int n, int m) {
-  int i, j;
-  double *a = malloc(sizeof(double) * n * m);
-  for (i = 0; i < n; i++) {
-    for (j = 0; j < m; j++) {
-      a[i*m + j] = (double)rand()/RAND_MAX;
-    }
+double* gen_matrix(int n, int m,FILE *fp) {
+  int i,j,fileScan;
+  char buffer[11 * sizeof(double)];
+  double* matrix = malloc(sizeof(double) * m * n);
+  for (i=0; i < m; i++){
+    for(j=0; j < n; j++){ 
+      fileScan = fscanf(fp, "%s", buffer);
+      matrix[i*n + j] = atof(buffer);
+   }
   }
+  return matrix;
+}
+
+double* gen_matrix2(int n, int m) { //original gen_matrix method. cant recall if c allows for overloading so changing method name
+
+  int i, j;
+
+  double *a = malloc(sizeof(double) * n * m);
+
+  for (i = 0; i < n; i++) {
+
+    for (j = 0; j < m; j++) {
+
+      a[i*m + j] = (double)rand()/RAND_MAX;
+
+    }
+
+  }
+
   return a;
+
 }
 
 void compare_matrices(double* a, double* b, int nRows, int nCols) {
