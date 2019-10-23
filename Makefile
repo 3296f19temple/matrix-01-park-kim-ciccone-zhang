@@ -43,5 +43,6 @@ clean:
 	rm -f *.o
 	rm -r Data
 	rm -f output.txt
+	rm -f graph.png	
 	rm -f ${PGMS}
 
