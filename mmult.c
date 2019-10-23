@@ -43,6 +43,17 @@ int mmult(double *c,
   return 0;
 }
 
+int naive_mmult(double *c, 
+	  double *a, int aRows, int aCols, 
+	  double *b, int bRows, int bCols){
+for (i = 0; i < N; i++)
+  for (j = 0; j < N; j++) {
+    c[i][j] = 0;
+    for (k = 0; k < N; k++)
+      c[i][j] += a[i][k] * b[k][j];
+  }
+}
+
 double* gen_matrix(int n, int m,FILE *fp) {
   int i,j,fileScan;
   char buffer[11 * sizeof(double)];
