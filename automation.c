@@ -7,13 +7,15 @@
 //time outputs will be stored in Data/ folder.
 int main(){
 
-  FILE *dataNode;
+  FILE *dataNodeBasic;
+  FILE *dataNodeSIMD;
   FILE *graphData;
   
   //list of commands used in automation
   char pull_data[100];//full line pulled with fgets()
   char* time_dataBasic;//tokenized string of just real time
   char* time_dataSIMD;//tokenized string of just real time
+  char time_dataBasic1[100];
   char insertCMD[100];
   char fileName[100];
   char graphMakeCMD[100];//command to generate graph
@@ -34,14 +36,15 @@ int main(){
      
      //extracting data from operation
      sprintf(fileName, "Data/basicOp%d.txt", i);
-     dataNode = fopen(fileName, "r");
-     fgets(pull_data, 10, dataNode);
-     fclose(dataNode);
+     dataNodeBasic = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeBasic);
+     fclose(dataNodeBasic);
      //printf("%s\n", pull_data);
      time_dataBasic = strtok(pull_data, " "); //gets token "real"
      time_dataBasic = strtok(NULL, " "); //gets token time value
-     //printf("%s\n", time_data);
-     
+     printf("%s\n", time_dataBasic);
+     sprintf(insertCMD, "%d,     %s,     ", i, time_dataBasic);
+     fprintf(graphData, insertCMD);
 
      sprintf(simd_op, "time -p ./SIMDmult %d > Data/simdOp%d.txt 2>&1", i, i);
      printf("running simdOp n = %d\n", i);
@@ -49,14 +52,16 @@ int main(){
 
      //extracting data from operation
      sprintf(fileName, "Data/simdOp%d.txt", i);
-     dataNode = fopen(fileName, "r");
-     fgets(pull_data, 10, dataNode);
-     fclose(dataNode);
+     dataNodeSIMD = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeSIMD);
+     fclose(dataNodeSIMD);
      time_dataSIMD = strtok(pull_data, " "); //gets token "real"
      time_dataSIMD = strtok(NULL, " "); //gets token time value
+     printf("%s\n", time_dataSIMD);
+     printf("%s\n", time_dataBasic);
 
      //creating insertCMD
-     sprintf(insertCMD, "%d,     %s,     %s\n", i, time_dataBasic, time_dataSIMD);
+     sprintf(insertCMD, "%s\n", time_dataSIMD);
      fprintf(graphData, insertCMD);
   }
   fclose(graphData);
