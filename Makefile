@@ -16,6 +16,8 @@ mmult.o:	mmult.c
 
 nParammult:     nParammult.c
 	gcc -o nParammult nParammult.c
+
+SIMDmult:       nParammult.c
 	mpicc -O3 -o SIMDmult nParammult.c
 
 automation:     automation.c
