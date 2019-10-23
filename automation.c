@@ -8,12 +8,9 @@
 int main(){
 
   //list of commands used in automation
-  char basic_op[100]; // = "./nParammult ";
-  //char *basic_op;
-  
-  //basic_op = basic;
+  char basic_op[100];
+
   printf("starting automated runs\n");
-  strcpy(basic_op, "./nParammult ");
   system("mkdir Data");
   
   for(int i = 0; i < 1001; i+= 50){//change increment and max vals for graph changes
