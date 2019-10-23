@@ -8,5 +8,5 @@ set xlabel 'Matrix size'
 set ylabel 'Time (sec)'
 set title 'Matrix multiplication speed on Wolfgang Cluster'
 
-plot "Data/GraphData.txt" using 1:2 title 'non-parallel' with linespoint,
-"Data/GraphData.txt" using 1:3 title 'SIMD' with linespoint
+plot "GraphData.txt" using 1:2 title 'non-parallel' with linespoint,
+plot "GraphData.txt" using 1:3 title 'SIMD' with linespoint
