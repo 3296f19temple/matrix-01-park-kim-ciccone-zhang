@@ -40,6 +40,7 @@ mxv_omp_mpi:	mxv_omp_mpi.c
 
 clean:
 	rm -f *.o
+	rm -r Data
 	rm -f output.txt
 	rm -f ${PGMS}
 

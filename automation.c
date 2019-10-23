@@ -14,10 +14,11 @@ int main(){
   //basic_op = basic;
   printf("starting automated runs\n");
   strcpy(basic_op, "./nParammult ");
-  
+  system("mkdir Data");
   
   for(int i = 0; i < 1001; i+= 50){//change increment and max vals for graph changes
      sprintf(basic_op, "time ./nParammult %d > Data/basicOp%d.txt 2>&1", i, i);
+     printf("running basicOp n = %d\n", i);
      system(basic_op);
   }
   printf("automated runs complete\n");
