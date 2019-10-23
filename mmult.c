@@ -46,10 +46,11 @@ int mmult(double *c,
 int naive_mmult(double *c, 
 	  double *a, int aRows, int aCols, 
 	  double *b, int bRows, int bCols){
-for (i = 0; i < N; i++)
-  for (j = 0; j < N; j++) {
+int i, j, k;
+for (i = 0; i < aRows; i++)
+  for (j = 0; j < bCols; j++) {
     c[i][j] = 0;
-    for (k = 0; k < N; k++)
+    for (k = 0; k < bRows; k++)
       c[i][j] += a[i][k] * b[k][j];
   }
 }
