@@ -25,7 +25,7 @@ int main(){
   system("touch Data/GraphData.txt");
 
   sprintf(graphMakeCMD, "gnuplot graph.gnu");
-  graphData = fopen("GraphData.txt", "a");
+  graphData = fopen("Data/GraphData.txt", "a");
 
   for(int i = 0; i <501 ; i+= 100){//change increment and max vals for graph changes
      sprintf(basic_op, "time -p ./nParammult %d > Data/basicOp%d.txt 2>&1", i, i);
