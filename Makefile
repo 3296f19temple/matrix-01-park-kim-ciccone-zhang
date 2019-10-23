@@ -1,4 +1,4 @@
-PGMS=mmult_omp_timing automation nParammult matrix_times_vector hello pi mxv_omp_mpi mmult_mpi_omp
+PGMS=mmult_omp_timing SIMDmult automation nParammult matrix_times_vector hello pi mxv_omp_mpi mmult_mpi_omp
 
 all:	${PGMS}
 
@@ -16,6 +16,9 @@ mmult.o:	mmult.c
 
 nParammult:     nParammult.c
 	gcc -o nParammult nParammult.c
+
+SIMDmult:       nParammult.c
+	mpicc -O3 -o SIMDmult nParammult.c
 
 automation:     automation.c
 	gcc -o automation automation.c
@@ -42,5 +45,6 @@ clean:
 	rm -f *.o
 	rm -r Data
 	rm -f output.txt
+	rm -f graph.png	
 	rm -f ${PGMS}
 
