@@ -16,8 +16,9 @@ int main(int argc, char* argv[]){
   double *cc2;
 
   if(argc > 1){
-    maxDim = atoi(argv[1]);
-    nrows = (int)rand() % maxDim;
+    //maxDim = atoi(argv[1]);
+    //nrows = (int)rand() % maxDim;
+    nrows = atoi(argv[1]);
     ncols = nrows;
 
     aa = gen_matrix2(nrows, ncols);
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]){
     mmult(cc1, aa, nrows, ncols, bb, nrows, ncols);
     mmult(cc2, aa, nrows, ncols, bb, nrows, ncols);
 
-    compare_matrices(cc2, cc1, nrows, nrows);
+    //compare_matrices(cc1, cc1, nrows, nrows);
     writeOutput(cc1, nrows, ncols, "output.txt");
   }
   
