@@ -1,3 +1,0 @@
-Matrices are the same
-0.30user 0.00system 0:00.31elapsed 98%CPU (0avgtext+0avgdata 3336maxresident)k
-0inputs+1232outputs (0major+555minor)pagefaults 0swaps
