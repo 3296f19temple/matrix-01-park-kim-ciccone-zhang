@@ -10,3 +10,4 @@ mmult_mpi_omp
 output.txt
 automation
 nParammult
+SIMDmult
