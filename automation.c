@@ -75,7 +75,7 @@ int main(){
 
      //printf("Starting Non-Sqaure runs\n");
      //create second size for non_square
-     rand_size = (int)rand() % i;
+     rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
      //printf("rand_size made\n");
      entry_size = rand_size * rand_size;
      //run BASIC op non-Square
