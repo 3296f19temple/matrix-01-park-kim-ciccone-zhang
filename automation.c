@@ -79,7 +79,7 @@ int main(){
      //printf("rand_size made\n");
      entry_size = rand_size * rand_size;
      //run BASIC op non-Square
-     sprintf(basic_op, "time -p ./nParammultNS %d %d > Data/basicOpNS%d.txt 2>&1", i, rand_size, i);
+     sprintf(basic_op, "time -p ./nParammultNS %d %d > Data/basicOpNS%d.txt 2>&1",rand_size, i, i);
      printf("running basicOp non-square n = %d, m = %d\n", i, rand_size);
      system(basic_op);
 
@@ -98,7 +98,7 @@ int main(){
      fprintf(graphData, insertCMD);// adds BASIC non-Square time data into file
 
      //run SIMD op non-Square
-     sprintf(simd_op, "time -p ./SIMDmultNS %d %d > Data/simdOpNS%d.txt 2>&1", i,rand_size, i);
+     sprintf(simd_op, "time -p ./SIMDmultNS %d %d > Data/simdOpNS%d.txt 2>&1",rand_size, i, i);
      printf("running simdOp non-square n = %d, m = %d\n",i, rand_size);
      system(simd_op);
 

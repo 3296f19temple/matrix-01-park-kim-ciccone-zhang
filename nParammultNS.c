@@ -13,9 +13,12 @@ int main(int argc, char* argv[]){
   double *aa; // Matrix A Square
   double *bb; // Matrix B Square
   double *cc1; //A x B Matrix result
+  
+  //printf("running nParammultNS with values %d and %d", atoi(argv[1]), atoi(argv[2]));
 
   if(argc == 3){//randomly generate other size values for nonsquare matrices
     //maxDim = atoi(argv[1]);
+    //printf("nParammultNS inside running");
     ncols = atoi(argv[2]);
     nrows = atoi(argv[1]);
     //ncols = nrows;
@@ -28,5 +31,6 @@ int main(int argc, char* argv[]){
 
     //compare_matrices(cc1, cc1, nrows, nrows);
     writeOutput(cc1, nrows, nrows, "outputNSq.txt");
+    //printf("done\n");
   }
 }                                   
