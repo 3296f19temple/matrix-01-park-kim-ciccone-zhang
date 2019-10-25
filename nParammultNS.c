@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stdlib.h> 
+#include<stdlib.h>
 #include<math.h>
 #include"mmult.c"
 
@@ -14,21 +14,19 @@ int main(int argc, char* argv[]){
   double *bb; // Matrix B Square
   double *cc1; //A x B Matrix result
 
-  if(argc == 2){//randomly generate other size values for nonsquare matrices
-    //nrows = (int)rand() % maxDim;
+  if(argc == 3){//randomly generate other size values for nonsquare matrices
+    //maxDim = atoi(argv[1]);
+    ncols = atoi(argv[2]);
     nrows = atoi(argv[1]);
-    ncols = nrows;
+    //ncols = nrows;
 
     aa = gen_matrix2(nrows, ncols);
-    bb = gen_matrix2(nrows, ncols);
-    cc1 = malloc(sizeof(double) * nrows * nrows);
+    bb = gen_matrix2(ncols, nrows);
+    cc1 = malloc(sizeof(double) * ncols * ncols);
 
-    mmult(cc1, aa, nrows, ncols, bb, nrows, ncols);
+    mmult(cc1, aa, nrows, ncols, bb, ncols, nrows);
 
     //compare_matrices(cc1, cc1, nrows, nrows);
-    writeOutput(cc1, nrows, ncols, "outputSq.txt");
-    
+    writeOutput(cc1, nrows, nrows, "outputNSq.txt");
   }
-  
-
-}
+}                                   
