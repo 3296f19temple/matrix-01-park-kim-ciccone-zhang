@@ -43,6 +43,18 @@ int mmult(double *c,
   return 0;
 }
 
+int naive_mmult(double *c, 
+	  double *a, int aRows, int aCols, 
+	  double *b, int bRows, int bCols){
+int i, j, k;
+for (i = 0; i < aRows; i++)
+  for (j = 0; j < bCols; j++) {
+    c[i*bCols + j] = 0;
+    for (k = 0; k < bRows; k++)
+      c[i*bCols + j] += a[i*bRows + k] * b[k*bCols + j];
+  }
+}
+
 double* gen_matrix(int n, int m,FILE *fp) {
   int i,j,fileScan;
   char buffer[11 * sizeof(double)];
@@ -54,6 +66,26 @@ double* gen_matrix(int n, int m,FILE *fp) {
    }
   }
   return matrix;
+}
+
+double* gen_matrix2(int n, int m) { //original gen_matrix method. cant recall if c allows for overloading so changing method name
+
+  int i, j;
+
+  double *a = malloc(sizeof(double) * n * m);
+
+  for (i = 0; i < n; i++) {
+
+    for (j = 0; j < m; j++) {
+
+      a[i*m + j] = (double)rand()/RAND_MAX;
+
+    }
+
+  }
+
+  return a;
+
 }
 
 void compare_matrices(double* a, double* b, int nRows, int nCols) {
