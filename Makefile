@@ -14,11 +14,11 @@ mmult_omp_timing:	mmult.o mmult_omp.o mmult_omp_timing.o
 mmult.o:	mmult.c
 	gcc -c -O3 mmult.c
 
-nParammult:     nParammult.c
-	gcc -o nParammult nParammult.c
+nParammult:     naive_nParammult.c
+	gcc -o nParammult naive_nParammult.c
 
-nParammultNS:	nParammultNS.c
-	gcc -o nParammultNS nParammultNS.c
+nParammultNS:	naive_nParammultNS.c
+	gcc -o nParammultNS naive_nParammultNS.c
 
 SIMDmultNS:	nParammultNS.c
 	mpicc -O3 -o SIMDmultNS nParammultNS.c
