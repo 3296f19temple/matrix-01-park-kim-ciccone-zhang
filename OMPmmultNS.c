@@ -2,6 +2,9 @@
 #include<stdlib.h>
 #include<math.h>
 #include"mmult.c"
+#include"mmult_omp.c"
+
+int mmult_omp(double *c, double *a, int aRows, int aCols,double *b, int bRows, int bCols);
 
 double* gen_matrix2(int n, int m);
 int mmult(double *c, double *a, int aRows, int aCols, double *b, int bRows, int bCols);
@@ -27,7 +30,7 @@ int main(int argc, char* argv[]){
     bb = gen_matrix2(ncols, nrows);
     cc1 = malloc(sizeof(double) * ncols * ncols);
 
-    mmult(cc1, aa, nrows, ncols, bb, ncols, nrows);
+    mmult_omp(cc1, aa, nrows, ncols, bb, ncols, nrows);
 
     //compare_matrices(cc1, cc1, nrows, nrows);
     writeOutput(cc1, nrows, nrows, "outputNSq.txt");
