@@ -110,10 +110,10 @@ int main(){
      dataNodeBasic = fopen(fileName, "r");
      fgets(pull_data, 10, dataNodeBasic);
      fclose(dataNodeBasic);
-     printf("%s\n", pull_data);
+     //printf("%s\n", pull_data);
      time_dataBasic = strtok(pull_data, " ");//gets token "real"
      time_dataBasic = strtok(NULL, " ");//gets token time value
-     printf("%s\n", time_dataBasic);
+     //printf("%s\n", time_dataBasic);
 
      //create insertCMD
      sprintf(insertCMD, "%d     %s     ", entry_size, time_dataBasic);
@@ -131,7 +131,7 @@ int main(){
      fclose(dataNodeSIMD);
      time_dataSIMD = strtok(pull_data, " "); //gets token "real"
      time_dataSIMD = strtok(NULL, " ");//gets token time value
-     printf("%s\n", time_dataSIMD);
+     //printf("%s\n", time_dataSIMD);
 
      //create insertCMD
      sprintf(insertCMD, "%s\n", time_dataSIMD);
