@@ -76,12 +76,6 @@ int main(){
      sprintf(insertCMD, "%s     ", time_dataSIMD);
      fprintf(graphData, insertCMD);// adds SIMD Square time data into file
 
-     //printf("Starting Non-Sqaure runs\n");
-     //create second size for non_square
-     rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
-     //printf("rand_size made\n");
-     entry_size = rand_size * rand_size;
-
      //run OMP op
      sprintf(omp_op, "time -p ./OMPmmult %d > Data/ompOp%d.txt 2>&1", i, i);
      printf("running ompOp n = %d\n", i);
@@ -100,6 +94,12 @@ int main(){
      //create insertCMD
      sprintf(insertCMD, "%s     ", time_dataOmp);
      fprintf(graphData, insertCMD);// adds i and OMP Square time data into file
+    
+     //printf("Starting Non-Sqaure runs\n");
+     //create second size for non_square
+     rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
+     //printf("rand_size made\n");
+     entry_size = rand_size * rand_size;
 
      //run BASIC op non-Square
      sprintf(basic_op, "time -p ./nParammultNS %d %d > Data/basicOpNS%d.txt 2>&1",rand_size, i, i);
