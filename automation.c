@@ -10,18 +10,21 @@ int main(){
 
   FILE *dataNodeBasic;
   FILE *dataNodeSIMD;
+  FILE *dataNodeOMP;
   FILE *graphData;
   
   //list of commands used in automation
   char pull_data[100];//full line pulled with fgets()
   char* time_dataBasic;//tokenized string of just real time
   char* time_dataSIMD;//tokenized string of just real time
+  char* time_dataOmp;
   char time_dataBasic1[100];
   char insertCMD[100];
   char fileName[100];
   char graphMakeCMD[100];//command to generate graph
   char basic_op[100];
   char simd_op[100];
+  char omp_op[100];
   int rand_size, entry_size;
 
   printf("starting automated runs\n");
@@ -78,11 +81,30 @@ int main(){
      rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
      //printf("rand_size made\n");
      entry_size = rand_size * rand_size;
+
+     //run OMP op
+     sprintf(omp_op, "time -p ./OMPmmult %d > Data/ompOp%d.txt 2>&1", i, i);
+     printf("running ompOp n = %d\n", i);
+     system(omp_op);
+     
+     //extracting data from operation OMP Square
+     sprintf(fileName, "Data/ompOp%d.txt", i);
+     dataNodeOMP = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeOMP);
+     fclose(dataNodeOMP);
+     //printf("%s\n", pull_data);
+     time_dataOmp = strtok(pull_data, " "); //gets token "real"
+     time_dataOmp = strtok(NULL, " "); //gets token time value
+     //printf("%s\n", time_dataOmp);
+
+     //create insertCMD
+     sprintf(insertCMD, "%s     ", time_dataOmp);
+     fprintf(graphData, insertCMD);// adds i and OMP Square time data into file
+
      //run BASIC op non-Square
      sprintf(basic_op, "time -p ./nParammultNS %d %d > Data/basicOpNS%d.txt 2>&1",rand_size, i, i);
      printf("running basicOp non-square n = %d, m = %d\n", i, rand_size);
      system(basic_op);
-
      //extracting data from operation BASIC non-Square
      sprintf(fileName, "Data/basicOpNS%d.txt", i);
      dataNodeBasic = fopen(fileName, "r");
