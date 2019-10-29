@@ -134,9 +134,27 @@ int main(){
      //printf("%s\n", time_dataSIMD);
 
      //create insertCMD
-     sprintf(insertCMD, "%s\n", time_dataSIMD);
+     sprintf(insertCMD, "%s     ", time_dataSIMD);
      fprintf(graphData, insertCMD);//adds SIMD non-Square time data into file
-  }
+
+     //run OpenMP op non-Square
+     sprintf(omp_op, "time -p ./OMPmmultNS %d %d > Data/ompOpNS%d.txt 2>&1", rand_size, i, i);
+     printf("running ompOp non-square n = %d, m = %d\n", i, rand_size);
+     system(omp_op);
+
+     //extracting data from operation OMP non-Square
+     sprintf(fileName, "Data/ompOpNS%d.txt", i);
+     dataNodeOMP = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeOMP);
+     //printf("%s\n", pull_data);
+     fclose(dataNodeOMP);
+     time_dataOmp = strtok(pull_data, " ");
+     time_dataOmp = strtok(NULL, " ");
+     //create insertCMD
+     sprintf(insertCMD, "%s\n", time_dataOmp);
+     fprintf(graphData, insertCMD);
+
+     }
   fclose(graphData);
   system(graphMakeCMD);
   printf("automated runs complete\n");
