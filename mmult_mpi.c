@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
       fclose(matrixAPtr);
       fclose(matrixBPtr);
 
-    }
+    
     }
     else {
       // Slave Code goes here
@@ -158,8 +158,8 @@ int main(int argc, char* argv[])
             break;
           }
         } 
-     }
-  }
+      }
+    }
   }
   else {
     fprintf(stderr, "Usage matrix_times_vector <size>\n");
