@@ -76,12 +76,6 @@ int main(){
      sprintf(insertCMD, "%s     ", time_dataSIMD);
      fprintf(graphData, insertCMD);// adds SIMD Square time data into file
 
-     //printf("Starting Non-Sqaure runs\n");
-     //create second size for non_square
-     rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
-     //printf("rand_size made\n");
-     entry_size = rand_size * rand_size;
-
      //run OMP op
      sprintf(omp_op, "time -p ./OMPmmult %d > Data/ompOp%d.txt 2>&1", i, i);
      printf("running ompOp n = %d\n", i);
@@ -100,6 +94,12 @@ int main(){
      //create insertCMD
      sprintf(insertCMD, "%s     ", time_dataOmp);
      fprintf(graphData, insertCMD);// adds i and OMP Square time data into file
+    
+     //printf("Starting Non-Sqaure runs\n");
+     //create second size for non_square
+     rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
+     //printf("rand_size made\n");
+     entry_size = rand_size * rand_size;
 
      //run BASIC op non-Square
      sprintf(basic_op, "time -p ./nParammultNS %d %d > Data/basicOpNS%d.txt 2>&1",rand_size, i, i);
@@ -134,9 +134,27 @@ int main(){
      //printf("%s\n", time_dataSIMD);
 
      //create insertCMD
-     sprintf(insertCMD, "%s\n", time_dataSIMD);
+     sprintf(insertCMD, "%s     ", time_dataSIMD);
      fprintf(graphData, insertCMD);//adds SIMD non-Square time data into file
-  }
+
+     //run OpenMP op non-Square
+     sprintf(omp_op, "time -p ./OMPmmultNS %d %d > Data/ompOpNS%d.txt 2>&1", rand_size, i, i);
+     printf("running ompOp non-square n = %d, m = %d\n", i, rand_size);
+     system(omp_op);
+
+     //extracting data from operation OMP non-Square
+     sprintf(fileName, "Data/ompOpNS%d.txt", i);
+     dataNodeOMP = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeOMP);
+     //printf("%s\n", pull_data);
+     fclose(dataNodeOMP);
+     time_dataOmp = strtok(pull_data, " ");
+     time_dataOmp = strtok(NULL, " ");
+     //create insertCMD
+     sprintf(insertCMD, "%s\n", time_dataOmp);
+     fprintf(graphData, insertCMD);
+
+     }
   fclose(graphData);
   system(graphMakeCMD);
   printf("automated runs complete\n");
