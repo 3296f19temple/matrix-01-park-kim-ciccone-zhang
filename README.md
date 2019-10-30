@@ -54,6 +54,28 @@ or if you want to return to the command line, use
 `exit` 
 three times to leave all three ssh's.
 
+## 1. Distributed Parallel Computing
+
+### Automation
+
+For the purposes of automating test, an automation file was created. The automation file mainly takes advantage
+of the system() function to run the other executables in this project. However, since the system() function can
+only take a single argument, an sprintf() method is used to write the desired command line statement to run a 
+particular executable into a string which is then given to the system() function. The output of this execution is
+output into a txt file specific to that run. By using the "Time" command line command, we can get the execution time
+data from each execution. The contents of each of these files would be formatted similar to below.
+
+By running a for loop for the size of the matrices I want, I can populate my data folder with different execution
+time data.
+
+From here within each iteration of the for loop, I would open the file that was just created by a system() execution
+and fgets() the first line, coming in the format "real X.XX". From here I can simply use the strtok() function
+to get just the time token. I then compile all of these time datas into a GraphData.txt file to create a graph with. 
+
+To include data for non-square matrix multiplication, I generate a random number for the m side of the matrix
+using information from the for loop. However as a result of these random numbers being added in, using n-size 
+no longer seems to be an accurate metric for my graph. As a result I use total matrix entries as my metric. 
+
 ### Matrix Multiplications without Parallelism
 
 This implementation of Matrix Multiplication takes two text files as parameters. 
@@ -65,3 +87,5 @@ the master then sends rows to each slave to do their calculations, when a slave 
 in a new matrix called cc1. When all of the calculations are finished the master it creates a new matrix cc2, and populates it
 using the mmult() function provided, it then compares cc1 and cc2 to test if our program is doing the calculations
 correctly and in the correct order. Finally, it writes the calculated matrix to a file called output.txt
+
+### Matrix Multiplcations with SIMD
