@@ -1,4 +1,4 @@
-PGMS=mmult_omp_timing nParammultNS SIMDmultNS SIMDmult OMPmmultNS automation nParammult matrix_times_vector hello pi mxv_omp_mpi mmult_mpi_omp OMPmmult
+PGMS=mmult_omp_timing nParammultNS SIMDmultNS SIMDmult OMPmmultNS automation nParammult matrix_times_vector hello pi mxv_omp_mpi mmult_mpi_omp OMPmmult mmult_mpi
 
 
 all:	${PGMS}
