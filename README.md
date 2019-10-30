@@ -54,6 +54,7 @@ or if you want to return to the command line, use
 `exit` 
 three times to leave all three ssh's.
 
+
 ## 1. Distributed Parallel Computing
 
 ### Automation
@@ -88,19 +89,29 @@ An interesting point is that with this metric, with the exception of Basic, ther
 in execution time between a particular method's square and non-square execution times. Perhaps there may be another
 metric that shows a significant difference in execution times, but as of right now I cannot think of one.
 
-### Matrix Multiplications without Parallelism
+### Matrix Multiplication w/o parallelism
 
-This implementation of Matrix Multiplication takes two text files as parameters. 
-Each file containing a string in the format rows(n) cols(m) followed by an n x m matrix. 
-It aquires the number of rows and columns for each matrix using fscanf(), it then generates
-two matrices, using the data from the matrices in those files, using the modified gen_matrix().
-It then compares the number of rows and columns in each and exits if they are not of the same dimensions,
-the master then sends rows to each slave to do their calculations, when a slave is done it's calculation it stores it 
-in a new matrix called cc1. When all of the calculations are finished the master it creates a new matrix cc2, and populates it
-using the mmult() function provided, it then compares cc1 and cc2 to test if our program is doing the calculations
-correctly and in the correct order. Finally, it writes the calculated matrix to a file called output.txt
+This program is implemented using the original gen_matrix function which generates a matrix of
+a size determined by the user, fillinf it with random numbers. It then creates a second matrix of the same size with 
+new random numbers and performs matrix multiplication using the mmult function. After which it compares the matrices
+to make sure they are came up with the correct answer and writes the output to a text file, output.txt
 
 ### Matrix Multiplcations with SIMD
+
+### Matrix Multiplications using MPI
+
+This implementation of Matrix Multiplication takes two text files as parameters. Each file containing a string in the format rows(n) 
+cols(m) followed by an n x m matrix. It aquires the number of rows and columns for each matrix using fscanf(), it then generates two 
+matrices, using the data from the matrices in those files, using the modified gen_matrix(). It then compares the number of rows and 
+columns in each and exits if they are not of the same dimensions, the master then sends rows to each slave to do their calculations, 
+when a slave is done it's calculation it stores it in a new matrix called cc1. When all of the calculations are finished the master it 
+creates a new matrix cc2, and populates it using the mmult() function provided, it then compares cc1 and cc2 to test if our program is 
+doing the calculations correctly and in the correct order. Finally, it writes the calculated matrix to a file called output.txt
+
+Excute: mpiexec -f ~/hosts -n 4 ./mmult_mpi a.txt b.txt
+
+for executing on ssh in chinook:
+`mpiexec -f hosts -n 4 ./mmult_mpi a.txt b.txt`
 
 ## Teammates
 
