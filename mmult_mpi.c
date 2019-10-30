@@ -49,9 +49,9 @@ int main(int argc, char* argv[])
       fprintf(stderr, "*******Matrices have different dimensions!*******\n");
       exit(1);
     }
-    nRows = aRows;
+    nRows = aRows; // get number of rows and cols for new matrix
     nCols = bCols;
-    toSend = aRows/numprocs;
+    toSend = aRows/numprocs;// get number of rows to send to each process
     sendBuff = malloc(sizeof(double) * toSend * aCols);
     double *outPut = (double *) malloc(sizeof(double)* nCols);
     aa = gen_matrix(aRows, aCols, matrixAPtr);
@@ -62,11 +62,12 @@ int main(int argc, char* argv[])
       starttime = MPI_Wtime();
       MPI_Bcast(bb, bRows*bCols, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
-      int i,j,k;
-      for(i = 0; i < min(aRows, numprocs); i++) {
+      int i,j,k; //send rows to slaves for processing
+      for(i = 0; i < min(aRows, numprocs-1); i++) {
          for(j = 0; j < aCols; j++) {
              sendBuff[j] = aa[(i * aCols) + j];
-         }                                                                                                                                                                                                                  MPI_Send(sendBuff, aCols, MPI_DOUBLE, 2, i+1, MPI_COMM_WORLD);
+         }  
+         MPI_Send(sendBuff, aCols, MPI_DOUBLE, i+1, i+1, MPI_COMM_WORLD);
          numSent++;
       }
 
@@ -110,7 +111,8 @@ int main(int argc, char* argv[])
           }
           MPI_Send(sendBuff, aCols, MPI_DOUBLE, sender, numSent+1, MPI_COMM_WORLD);
           numSent++;
-        }                                                                                                                                                                                                                  else {//stop slaves
+        } 
+        else {//stop slaves
           MPI_Send(MPI_BOTTOM, 0, MPI_DOUBLE, sender, 0, MPI_COMM_WORLD);
         }
       }
@@ -131,7 +133,8 @@ int main(int argc, char* argv[])
 
     } else {
       // Slave Code goes here
-                                                                                                                                                                                                                         bb = malloc(sizeof(double) * nRows*nCols);                                                                                                                                                                         MPI_Bcast(bb, bRows*bCols, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+      bb = malloc(sizeof(double) * nRows*nCols);
+      MPI_Bcast(bb, bRows*bCols, MPI_DOUBLE, 0, MPI_COMM_WORLD);
       if(myid <= aRows) {
         while(1) {
           MPI_Recv(sendBuff, aCols, MPI_DOUBLE, 0, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
@@ -152,8 +155,8 @@ int main(int argc, char* argv[])
           if(numSent == aRows){
             break;
           }
-        }                                                                                                                                                                                                                }                                                                                                                                                                                                                                                                                                                                                                                                                                   }
-
+        } 
+     }
   } else {
     fprintf(stderr, "Usage matrix_times_vector <size>\n");
   }
