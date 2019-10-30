@@ -100,6 +100,16 @@ to make sure they are came up with the correct answer and writes the output to a
 
 ### Matrix Multiplications using MPI
 
+This implementation of Matrix Multiplication takes two text files as parameters. Each file containing a string in the format rows(n) 
+cols(m) followed by an n x m matrix. It aquires the number of rows and columns for each matrix using fscanf(), it then generates two 
+matrices, using the data from the matrices in those files, using the modified gen_matrix(). It then compares the number of rows and 
+columns in each and exits if they are not of the same dimensions, the master then sends rows to each slave to do their calculations, 
+when a slave is done it's calculation it stores it in a new matrix called cc1. When all of the calculations are finished the master it 
+creates a new matrix cc2, and populates it using the mmult() function provided, it then compares cc1 and cc2 to test if our program is 
+doing the calculations correctly and in the correct order. Finally, it writes the calculated matrix to a file called output.txt
+
+Excute: mpiexec -f ~/hosts -n 4 ./mmult_mpi a.txt b.txt
+
 ## Teammates
 
 ### Contributions
