@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
       fclose(matrixAPtr);
       fclose(matrixBPtr);
 
-    
+      }
     }
     else {
       // Slave Code goes here
