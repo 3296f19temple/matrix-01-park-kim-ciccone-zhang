@@ -129,11 +129,13 @@ Much of our coordination was done very loosely through a group text chat.
 For generating matrices of specific or random sizes, some work has been put into this. In the automation.c file, the
 arguments in the for loop control the data used for the square matrix multiplications. 
 
-
+![Sample for loop](SampleForLoop.PNG)
 
 In this given implementation, runs would start with 100 x 100 size matrices as indicated by int i's start value. 
 The last argument gives my increment for the size and the middle argument gives my end point. So for this run
 I would run until 500 x 500 matrices incrementing by 100 each iteration. 
+
+![Generation of m-size](RandGen.PNG)
 
 The generation of non-square matrices was a little more complicated. I still kept the outside edges of the two 
 matrices to be multiplied the same as int i provided in the for loop. That said, I use the rand() function to
