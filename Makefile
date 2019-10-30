@@ -54,10 +54,10 @@ pi:	pi.c
 mxv_omp_mpi:	mxv_omp_mpi.c
 	mpicc -fopenmp -O3 -o mxv_omp_mpi mxv_omp_mpi.c
 
-mmult_mpi:  mmult.o mmult_mpi.o
+mmult_mpi:	mmult.o mmult_mpi.o
 	mpicc -o mmult_mpi -fopenmp -O3 mmult.o mmult_mpi.c
 	
-mmult_mpi.o: mmult_mpi.o
+mmult_mpi.o:	mmult_mpi.o
 	mpicc -c -fopenmp -O3 mmult_mpi.c
 
 clean:
