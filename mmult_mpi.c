@@ -71,28 +71,6 @@ int main(int argc, char* argv[])
          numSent++;
       }
 
-
-      buffer = malloc(sizeof(double) * aCols);
-
-      for(int i = 0; i< aRows; i++){
-        MPI_Recv(outPut, nCols, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-        sender = status.MPI_SOURCE;
-        ansType = status.MPI_TAG;
-
-        //fill in cc1 with data received from slave
-        for(int j=0; j< bCols; j++) {
-          cc1[(ansType-1)*bCols + j] = outPut[j];
-        }
-
-        if(numSent < aRows) {//if there are more rows to send, send them
-          for(j = 0; j < aCols; j++) {
-             sendBuff[j] = aa[(numSent * aCols) + j];
-          }
-          MPI_Send(sendBuff, aCols, MPI_DOUBLE, sender, numSent+1, MPI_COMM_WORLD);
-          numSent++;
-      }
-
-
       buffer = malloc(sizeof(double) * aCols);
 
       for(int i = 0; i< aRows; i++){
@@ -131,7 +109,7 @@ int main(int argc, char* argv[])
       fclose(matrixAPtr);
       fclose(matrixBPtr);
 
-      }
+      
     }
     else {
       // Slave Code goes here
