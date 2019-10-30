@@ -1,4 +1,5 @@
-PGMS=mmult_omp_timing nParammultNS SIMDmultNS SIMDmult OMPmmultNS automation nParammult matrix_times_vector hello pi mxv_omp_mpi mmult_mpi_omp OMPmmult
+PGMS=mmult_omp_timing nParammultNS SIMDmultNS SIMDmult OMPmmultNS automation nParammult matrix_times_vector hello pi mxv_omp_mpi mmult_mpi_omp OMPmmult mmult_mpi
+
 
 all:	${PGMS}
 
@@ -52,6 +53,12 @@ pi:	pi.c
 
 mxv_omp_mpi:	mxv_omp_mpi.c
 	mpicc -fopenmp -O3 -o mxv_omp_mpi mxv_omp_mpi.c
+
+mmult_mpi:	mmult.o mmult_mpi.o
+	mpicc -o mmult_mpi -fopenmp -O3 mmult.o mmult_mpi.c
+	
+mmult_mpi.o:	mmult_mpi.o
+	mpicc -c -fopenmp -O3 mmult_mpi.c
 
 clean:
 	rm -f *.o
