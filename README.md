@@ -47,7 +47,13 @@ or if you want to return to the command line, use
 `exit` 
 three times to leave all three ssh's.
 
-### Matrix Multiplications without Parallelism
+### Matrix Multiplication w/o parallelism
+
+This program is implemented using the original gen_matrix function which generates a matrix of
+a size determined by the user, fillinf it with random numbers. It then creates a second matrix of the same size with 
+new random numbers and performs matrix multiplication using the mmult function. After which it compares the matrices to make sure they are came up with the correct answer and writes the output to a text file, output.txt
+
+### Matrix Multiplications using MPI
 
 This implementation of Matrix Multiplication takes two text files as parameters. 
 Each file containing a string in the format rows(n) cols(m) followed by an n x m matrix. 
