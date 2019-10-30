@@ -26,6 +26,40 @@ void printMatrices(double *matrix, int m, int n){
   }
 }
 
+void multiplyMFiles(char* input1, char* input2, int Dim1X, int Dim1Y, int Dim2X, int Dim2Y){
+   int i, j;
+   FILE *input1;
+   FILE *input2;
+
+   double* mat1 = malloc(sizeof(double) * Dim1X * Dim1Y);
+
+   double* mat2 = malloc(sizeof(double) * Dim2X * Dim2Y);
+
+   double* testOutput = malloc(sizeof(double) * Dim1X * Dim2Y);
+  
+   input1 = fopen(input1, "r");
+   input2 = fopen(input2, "r");
+
+   for(i = 0; i < Dim1X; i++){
+     for(j = 0; j < Dim1Y; j++){
+       mat1[i*Dim1Y + j] = //finish this
+     }
+   }
+
+   for(i = 0; i < Dim2X; i++){
+     for(j = 0; j < Dim2Y; j++){
+       mat2[i*Dim2Y + j] = //finish this
+     }
+   }
+
+   //to test
+   printMatrices(mat1, Dim1X, Dim1Y);
+   printMatrices(mat2, Dim2X, Dim2Y);
+
+   mmult(testOutput, mat1, Dim1X, Dim1Y, mat2, Dim2X, Dim2Y);
+   writeOutput(testOutput, Dim1X, Dim2Y, "SingleInputRunOut.txt");
+}
+
 int mmult(double *c, 
 	  double *a, int aRows, int aCols, 
 	  double *b, int bRows, int bCols) {

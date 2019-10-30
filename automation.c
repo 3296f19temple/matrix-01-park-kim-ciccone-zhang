@@ -6,7 +6,7 @@
 
 //running this will use system() to run requested main methods in automated manner
 //time outputs will be stored in Data/ folder.
-int main(){
+int main(int argc, char* argv[]){
 
   FILE *dataNodeBasic;
   FILE *dataNodeSIMD;
@@ -33,7 +33,14 @@ int main(){
 
   sprintf(graphMakeCMD, "gnuplot graph.gnu");
   graphData = fopen("Data/GraphData.txt", "a");
+  
 
+  //testing for input check
+  if(argc == 3){
+   
+  }
+
+  //running actual automation testing
   for(int i = 100; i <501 ; i+= 100){//change increment and max vals for graph changes
 
      //state entry_size
