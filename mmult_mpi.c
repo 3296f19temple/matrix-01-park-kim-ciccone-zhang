@@ -131,7 +131,9 @@ int main(int argc, char* argv[])
       fclose(matrixAPtr);
       fclose(matrixBPtr);
 
-    } else {
+    }
+    }
+    else {
       // Slave Code goes here
       bb = malloc(sizeof(double) * nRows*nCols);
       MPI_Bcast(bb, bRows*bCols, MPI_DOUBLE, 0, MPI_COMM_WORLD);
@@ -157,7 +159,9 @@ int main(int argc, char* argv[])
           }
         } 
      }
-  } else {
+  }
+  }
+  else {
     fprintf(stderr, "Usage matrix_times_vector <size>\n");
   }
   MPI_Finalize();
