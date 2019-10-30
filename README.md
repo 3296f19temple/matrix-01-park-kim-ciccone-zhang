@@ -110,6 +110,9 @@ doing the calculations correctly and in the correct order. Finally, it writes th
 
 Excute: mpiexec -f ~/hosts -n 4 ./mmult_mpi a.txt b.txt
 
+for executing on ssh in chinook:
+`mpiexec -f hosts -n 4 ./mmult_mpi a.txt b.txt`
+
 ## Teammates
 
 ### Contributions
