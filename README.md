@@ -82,6 +82,8 @@ To include data for non-square matrix multiplication, I generate a random number
 using information from the for loop. However as a result of these random numbers being added in, using n-size 
 no longer seems to be an accurate metric for my graph. As a result I use total matrix entries as my metric. 
 
+![Sample Graph](graph.png)
+
 ### Matrix Multiplications without Parallelism
 
 This implementation of Matrix Multiplication takes two text files as parameters. 
