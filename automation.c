@@ -25,6 +25,7 @@ int main(){
   char basic_op[100];
   char simd_op[100];
   char omp_op[100];
+  char mmult_mpi[100];
   int rand_size, entry_size;
 
   printf("starting automated runs\n");
@@ -154,6 +155,21 @@ int main(){
      sprintf(insertCMD, "%s\n", time_dataOmp);
      fprintf(graphData, insertCMD);
 
+     //extracting data for MPI operation
+     sprintf(mmult_mpi, "time -p mpiexec -f hosts -n 4./mmult_mpi %d > Data/mpiOp%d.txt 2>&1", i, i);
+     printf("running MPI n = %d\n", i);
+     system(mmult_mpi);
+
+     sprintf(fileName, "Data/mpiOp%d.txt", i);
+     dataNodeOMP = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeOMP);
+     fclose(dataNodeOMP);
+    
+     time_dataOmp = strtok(pull_data, " ");
+     time_dataOmp = strtok(NULL, " ");
+    
+     sprintf(insertCMD, "%s     ", time_dataOMP);
+     fprintf(graphData, insertCMD);
      }
   fclose(graphData);
   system(graphMakeCMD);
