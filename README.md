@@ -65,12 +65,18 @@ particular executable into a string which is then given to the system() function
 output into a txt file specific to that run. By using the "Time" command line command, we can get the execution time
 data from each execution. The contents of each of these files would be formatted similar to below.
 
+![Sample Data Run](SampleDataRun.PNG)
+
 By running a for loop for the size of the matrices I want, I can populate my data folder with different execution
 time data.
+
+![Data folder contents](DataContents.PNG)
 
 From here within each iteration of the for loop, I would open the file that was just created by a system() execution
 and fgets() the first line, coming in the format "real X.XX". From here I can simply use the strtok() function
 to get just the time token. I then compile all of these time datas into a GraphData.txt file to create a graph with. 
+
+![GraphData text file contents](GraphDataRun.PNG)
 
 To include data for non-square matrix multiplication, I generate a random number for the m side of the matrix
 using information from the for loop. However as a result of these random numbers being added in, using n-size 
