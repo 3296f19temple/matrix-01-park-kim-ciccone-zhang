@@ -102,14 +102,27 @@ correctly and in the correct order. Finally, it writes the calculated matrix to 
 
 ### Matrix Multiplcations with SIMD
 
+Single Instruction Multiple Data (SIMD) makes program execution faster by accessing data that are near each other. Whem multiplying matrices with SIMD, it generates two matrices to multiply, multiply using SIMD, then write output to a file.   
+As we can see from the graph, as the number of Matrix Entries increases, SIMD implementation is faster roughtly 4 times. For example, when the Matrix Entries were 250000, it took 1.2 seconcds for Basic operation while it only took 0.25 seconds for SIMD operation for square matrices.
+
+### Matrix Multiplcations with OpenMP
+
+OpenMP is an API for Symmetric Multiprocessing. It shares memory to other processors so that several processors work on the task at the same time. Our program shared two input matrices, the result matrix, and number of rows and cols for each matrices.
+As we can see from the graph, OMP operation is faster than Basic operation. However, we couldn't find any big difference between SIMD and OMP operations.
+
+### Matrix Multiplications with MPI
+
+MPI is an API for Distributed Memory Parallel Computing. 
+
+
 ## Teammates
 
 ### Contributions
 
-Christopher Park - 
-Sungji Kim - 
-Joe Ciccone -
-Chi Zhang - 
+Christopher Park - Implemented SIMD,  Automation, Multiplications for Non-Square matrices, Read from Files, and Documentation.
+Sungji Kim - Implemented Basic, OpenMD, and Documentation. 
+Joe Ciccone - Implemented MPI for Square matrices, and Documentation.
+Chi Zhang - Implemented MPI+OMP, and Documentation.
 
 ### Peer Review
 
