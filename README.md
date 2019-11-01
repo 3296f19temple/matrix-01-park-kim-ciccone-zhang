@@ -151,14 +151,29 @@ Excute: mpiexec -f ~/hosts -n 4 ./mmult_mpi a.txt b.txt
 for executing on ssh in chinook:
 `mpiexec -f hosts -n 4 ./mmult_mpi a.txt b.txt`
 
+### Problems
+
+While the implementation of MPI runs and appears to generate data that states the methodology is faster than many of the others
+I run into some strange errors in the individual execution files as soon below.
+
+![error_message](DataError.PNG)
+
+-The functionality for input of two text files to run the process with has not been implemented, however much of the framework
+is available for viewing on the branch **inputFileRead**. 
+
+-The functionality for running MPI with non-square matrices has not been implemented.
+
+-The functionality for running MPI and OpenMP simultaneously has not been implemented.
+
 
 ## Teammates
 
 ### Contributions
 
-Christopher Park - Implemented SIMD,  Automation, Multiplications for Non-Square matrices, Read from Files, and Documentation.
+Christopher Park - Implemented Basic,  Automation, Multiplications for Non-Square matrices, Read from Files,
+Pull request reviews, Bug fixing, Documentation.
 
-Sungji Kim - Implemented Basic, OpenMD, and Documentation. 
+Sungji Kim - Implemented SIMD, OpenMP, Pull request reviews, Documentation. 
 
 Joe Ciccone - Implemented MPI for Square matrices, and Documentation.
 
