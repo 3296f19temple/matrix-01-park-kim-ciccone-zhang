@@ -25,6 +25,7 @@ int main(){
   char basic_op[100];
   char simd_op[100];
   char omp_op[100];
+  char mmult_mpi[100];
   int rand_size, entry_size;
 
   printf("starting automated runs\n");
@@ -34,7 +35,7 @@ int main(){
   sprintf(graphMakeCMD, "gnuplot graph.gnu");
   graphData = fopen("Data/GraphData.txt", "a");
 
-  for(int i = 100; i <501 ; i+= 100){//change increment and max vals for graph changes
+  for(int i = 100; i <1001 ; i+= 100){//change increment and max vals for graph changes
 
      //state entry_size
      entry_size = i*i;
@@ -95,6 +96,28 @@ int main(){
      sprintf(insertCMD, "%s     ", time_dataOmp);
      fprintf(graphData, insertCMD);// adds i and OMP Square time data into file
     
+     //extracting data for MPI operation
+     sprintf(mmult_mpi, "time -p mpiexec -f hosts -n 4./mmult_mpi %d > Data/mpiOp%d.txt 2>&1", i, i);
+     printf("running MPI n = %d\n", i);
+     system(mmult_mpi);
+
+     sprintf(fileName, "Data/mpiOp%d.txt", i);
+     dataNodeOMP = fopen(fileName, "r");
+     fgets(pull_data, 150, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP); //done proxy messages
+     fgets(pull_data, 150, dataNodeOMP); //exit error status
+     fgets(pull_data, 10, dataNodeOMP); //real
+     //printf("%s\n", pull_data);
+     fclose(dataNodeOMP);
+    
+     time_dataOmp = strtok(pull_data, " ");
+     time_dataOmp = strtok(NULL, " ");
+    
+     sprintf(insertCMD, "%s     ", time_dataOmp);
+     fprintf(graphData, insertCMD);
+    
      //printf("Starting Non-Sqaure runs\n");
      //create second size for non_square
      rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
@@ -153,7 +176,6 @@ int main(){
      //create insertCMD
      sprintf(insertCMD, "%s\n", time_dataOmp);
      fprintf(graphData, insertCMD);
-
      }
   fclose(graphData);
   system(graphMakeCMD);

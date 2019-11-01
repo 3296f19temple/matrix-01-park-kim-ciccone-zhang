@@ -55,6 +55,36 @@ or if you want to return to the command line, use
 three times to leave all three ssh's.
 
 
+### Operation and Architecture
+
+This project is broken into a number of different subfiles for each of the different task. 
+Each of the different calculation methodologies has its own mmult file that is called for
+running the actual multiplication calculation. All of this is pulled together into the 
+automation.c file which calls each of these executables and runs them in a for loop
+iterating over the desired data values. Each methodology execution outputs a single text file
+for time data specific to that run in the Data folder, and also extracts the real execution
+time from that file to compile in the GraphData.txt folder. This file is then read by the 
+graph.gnu file in order to generate a graph. 
+
+__**RUNNING THE PROGRAM**__
+
+Once the repo is copied into the chinook server (or your local terminal if you somehow get it
+working there), the code needs to be compiled. To first compile, use:
+
+`make`
+
+From here the code is now compiled and ready to execute. If desired, each of the methodology 
+executables can be executed individually. However to run the automated test along with graph
+generation, use:
+
+`./automation`
+
+During the operation, all data will be stored in the Data folder. To clean the data for a new
+run, use the command:
+
+`make clean`
+
+
 ## 1. Distributed Parallel Computing
 
 ### Automation
@@ -121,14 +151,29 @@ Excute: mpiexec -f ~/hosts -n 4 ./mmult_mpi a.txt b.txt
 for executing on ssh in chinook:
 `mpiexec -f hosts -n 4 ./mmult_mpi a.txt b.txt`
 
+### Problems
+
+While the implementation of MPI runs and appears to generate data that states the methodology is faster than many of the others
+I run into some strange errors in the individual execution files as soon below.
+
+![error_message](DataError.PNG)
+
+-The functionality for input of two text files to run the process with has not been implemented, however much of the framework
+is available for viewing on the branch **inputFileRead**. 
+
+-The functionality for running MPI with non-square matrices has not been implemented.
+
+-The functionality for running MPI and OpenMP simultaneously has not been implemented.
+
 
 ## Teammates
 
 ### Contributions
 
-Christopher Park - Implemented SIMD,  Automation, Multiplications for Non-Square matrices, Read from Files, and Documentation.
+Christopher Park - Implemented Basic,  Automation, Multiplications for Non-Square matrices, Read from Files,
+Pull request reviews, Bug fixing, Documentation.
 
-Sungji Kim - Implemented Basic, OpenMD, and Documentation. 
+Sungji Kim - Implemented SIMD, OpenMP, Pull request reviews, Documentation. 
 
 Joe Ciccone - Implemented MPI for Square matrices, and Documentation.
 

@@ -40,11 +40,15 @@ int main(int argc, char* argv[])
   MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
   if (argc > 1) {
-    FILE* matrixAPtr , *matrixBPtr;
+    /*FILE* matrixAPtr , *matrixBPtr;
     matrixAPtr = fopen(argv[1],"r");
     matrixBPtr = fopen(argv[2],"r");
     fscanf(matrixAPtr, "rows(%d) cols(%d)", &aRows, &aCols);
-    fscanf(matrixBPtr, "rows(%d) cols(%d)", &bRows, &bCols);
+    fscanf(matrixBPtr, "rows(%d) cols(%d)", &bRows, &bCols);*/
+    aRows = atoi(argv[1]);
+    aCols = aRows;
+    bRows = aRows;
+    bCols = aRows;
     if(aCols != bRows){
       fprintf(stderr, "*******Matrices have different dimensions!*******\n");
       exit(1);
@@ -54,8 +58,8 @@ int main(int argc, char* argv[])
     toSend = aRows/numprocs;// get number of rows to send to each process
     sendBuff = malloc(sizeof(double) * toSend * aCols);
     double *outPut = (double *) malloc(sizeof(double)* nCols);
-    aa = gen_matrix(aRows, aCols, matrixAPtr);
-    bb = gen_matrix(bRows, bCols, matrixBPtr);
+    aa = gen_matrix2(aRows, aCols);
+    bb = gen_matrix2(bRows, bCols);
     if (myid == MASTER) {
       // Master Code goes here
       cc1 = malloc(sizeof(double) * nRows * nCols);
@@ -106,8 +110,8 @@ int main(int argc, char* argv[])
       printMatrices(cc1, aRows, bCols);
       writeOutput(cc1, aRows, bCols, "output.txt");
 
-      fclose(matrixAPtr);
-      fclose(matrixBPtr);
+      /*fclose(matrixAPtr);
+      fclose(matrixBPtr);*/
 
       
     }
