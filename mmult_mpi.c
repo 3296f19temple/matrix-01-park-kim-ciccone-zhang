@@ -33,8 +33,6 @@ int main(int argc, char* argv[])
   int ansType;
   int toSend;
   double *sendBuff;
-  double *matrixAPtr;
-  double *matrixBPtr;
   int aRows, bRows, aCols, bCols, nRows, nCols;
   int MASTER = 0;
   MPI_Init(&argc, &argv);
@@ -60,8 +58,8 @@ int main(int argc, char* argv[])
     toSend = aRows/numprocs;// get number of rows to send to each process
     sendBuff = malloc(sizeof(double) * toSend * aCols);
     double *outPut = (double *) malloc(sizeof(double)* nCols);
-    aa = gen_matrix2(aRows, aCols, matrixAPtr);
-    bb = gen_matrix2(bRows, bCols, matrixBPtr);
+    aa = gen_matrix2(aRows, aCols);
+    bb = gen_matrix2(bRows, bCols);
     if (myid == MASTER) {
       // Master Code goes here
       cc1 = malloc(sizeof(double) * nRows * nCols);
