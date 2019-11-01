@@ -96,6 +96,22 @@ int main(){
      sprintf(insertCMD, "%s     ", time_dataOmp);
      fprintf(graphData, insertCMD);// adds i and OMP Square time data into file
     
+     //extracting data for MPI operation
+     sprintf(mmult_mpi, "time -p mpiexec -f hosts -n 4./mmult_mpi %d > Data/mpiOp%d.txt 2>&1", i, i);
+     printf("running MPI n = %d\n", i);
+     system(mmult_mpi);
+
+     sprintf(fileName, "Data/mpiOp%d.txt", i);
+     dataNodeOMP = fopen(fileName, "r");
+     fgets(pull_data, 10, dataNodeOMP);
+     fclose(dataNodeOMP);
+    
+     time_dataOmp = strtok(pull_data, " ");
+     time_dataOmp = strtok(NULL, " ");
+    
+     sprintf(insertCMD, "%s     ", time_dataOMP);
+     fprintf(graphData, insertCMD);
+    
      //printf("Starting Non-Sqaure runs\n");
      //create second size for non_square
      rand_size = (int)rand() % 100 + i - 100; //have %value be equal to increment value in for lloop
@@ -153,22 +169,6 @@ int main(){
      time_dataOmp = strtok(NULL, " ");
      //create insertCMD
      sprintf(insertCMD, "%s\n", time_dataOmp);
-     fprintf(graphData, insertCMD);
-
-     //extracting data for MPI operation
-     sprintf(mmult_mpi, "time -p mpiexec -f hosts -n 4./mmult_mpi %d > Data/mpiOp%d.txt 2>&1", i, i);
-     printf("running MPI n = %d\n", i);
-     system(mmult_mpi);
-
-     sprintf(fileName, "Data/mpiOp%d.txt", i);
-     dataNodeOMP = fopen(fileName, "r");
-     fgets(pull_data, 10, dataNodeOMP);
-     fclose(dataNodeOMP);
-    
-     time_dataOmp = strtok(pull_data, " ");
-     time_dataOmp = strtok(NULL, " ");
-    
-     sprintf(insertCMD, "%s     ", time_dataOMP);
      fprintf(graphData, insertCMD);
      }
   fclose(graphData);
