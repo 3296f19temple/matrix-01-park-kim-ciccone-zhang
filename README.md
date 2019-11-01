@@ -55,6 +55,36 @@ or if you want to return to the command line, use
 three times to leave all three ssh's.
 
 
+### Operation and Architecture
+
+This project is broken into a number of different subfiles for each of the different task. 
+Each of the different calculation methodologies has its own mmult file that is called for
+running the actual multiplication calculation. All of this is pulled together into the 
+automation.c file which calls each of these executables and runs them in a for loop
+iterating over the desired data values. Each methodology execution outputs a single text file
+for time data specific to that run in the Data folder, and also extracts the real execution
+time from that file to compile in the GraphData.txt folder. This file is then read by the 
+graph.gnu file in order to generate a graph. 
+
+__**RUNNING THE PROGRAM**__
+
+Once the repo is copied into the chinook server (or your local terminal if you somehow get it
+working there), the code needs to be compiled. To first compile, use:
+
+`make`
+
+From here the code is now compiled and ready to execute. If desired, each of the methodology 
+executables can be executed individually. However to run the automated test along with graph
+generation, use:
+
+`./automation.c`
+
+During the operation, all data will be stored in the Data folder. To clean the data for a new
+run, use the command:
+
+`make clean`
+
+
 ## 1. Distributed Parallel Computing
 
 ### Automation
