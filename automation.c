@@ -35,7 +35,7 @@ int main(){
   sprintf(graphMakeCMD, "gnuplot graph.gnu");
   graphData = fopen("Data/GraphData.txt", "a");
 
-  for(int i = 100; i <501 ; i+= 100){//change increment and max vals for graph changes
+  for(int i = 100; i <1001 ; i+= 100){//change increment and max vals for graph changes
 
      //state entry_size
      entry_size = i*i;
@@ -103,13 +103,19 @@ int main(){
 
      sprintf(fileName, "Data/mpiOp%d.txt", i);
      dataNodeOMP = fopen(fileName, "r");
-     fgets(pull_data, 10, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP);
+     fgets(pull_data, 150, dataNodeOMP); //done proxy messages
+     fgets(pull_data, 150, dataNodeOMP); //exit error status
+     fgets(pull_data, 10, dataNodeOMP); //real
+     //printf("%s\n", pull_data);
      fclose(dataNodeOMP);
     
      time_dataOmp = strtok(pull_data, " ");
      time_dataOmp = strtok(NULL, " ");
     
-     sprintf(insertCMD, "%s     ", time_dataOMP);
+     sprintf(insertCMD, "%s     ", time_dataOmp);
      fprintf(graphData, insertCMD);
     
      //printf("Starting Non-Sqaure runs\n");
