@@ -77,7 +77,7 @@ From here the code is now compiled and ready to execute. If desired, each of the
 executables can be executed individually. However to run the automated test along with graph
 generation, use:
 
-`./automation.c`
+`./automation`
 
 During the operation, all data will be stored in the Data folder. To clean the data for a new
 run, use the command:
